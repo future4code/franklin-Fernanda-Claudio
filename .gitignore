@@ -103,5 +103,9 @@ build/
 
 # TernJS port file
 .tern-port
+<<<<<<< HEAD
 
 .DS_Store
+=======
+.DS_Store
+>>>>>>> 77a516d (removendo o ds_store)
