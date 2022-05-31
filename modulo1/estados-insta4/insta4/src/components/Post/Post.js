@@ -85,24 +85,34 @@ function Post(props){
     } else {
       iconeSalvo = save
     }
-
+////////////
     const onClickShare = () => {
       setShare(!share)
       if(share) {
-        componenteComentario = <SecaoComentario aoEnviar={aoEnviarComentario}/>
+        componenteShare = <SecaoCompartilhar aoEnviar={aoEnviar}/>
+        console.log(share)
       }
-      console.log(comentando)
+        }
+
+
+  const aoEnviar = () => {
+    setShare(false)
+  }
+
+  let componenteShare
+
+    if(share) {
+      componenteShare = <SecaoCompartilhar aoEnviar={aoEnviar}/>
     }
     
-  
     let iconeShare
   
       if(share) {
         iconeShare = share_black_24dp
       } else {
         iconeShare = share_black_24dp
-      }
-
+     }
+/////////
   const onClickComentario = () => {
     setComentando(!comentando)
     if(comentando) {
@@ -123,6 +133,7 @@ function Post(props){
     } else {
       iconeCurtida = iconeCoracaoBranco
     }
+
 
     let componenteComentario
 
@@ -162,6 +173,7 @@ function Post(props){
         />
       </PostFooter>
       {componenteComentario}
+      {componenteShare}
     </PostContainer>
   )
 }
