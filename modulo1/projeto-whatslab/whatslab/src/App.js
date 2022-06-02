@@ -1,7 +1,7 @@
-import logo from './logo.svg';
 import { useState } from 'react';
 import './App.css';
 import styled from 'styled-components';
+
 function App() {
   const StyledMessage = styled.p`
     color: #03045e;
@@ -18,15 +18,14 @@ function App() {
   const [inputMensagem, setInputMensagem] = useState('');
   const [mensagens, setMensagens] = useState([
     {
-      id: 1,
       nome: 'Administrador',
       texto: 'Olá, comece a enviar suas mensagens agora mesmo!',
     },
   ]);
   const ListaDeMensagens = mensagens.map((mensagem) => {
     return (
-      <StyledMessage key={mensagem.id}>
-        {mensagem.nome}: {mensagem.texto}
+      <StyledMessage>
+        {mensagem.nome}:{mensagem.texto}
       </StyledMessage>
     );
   });
