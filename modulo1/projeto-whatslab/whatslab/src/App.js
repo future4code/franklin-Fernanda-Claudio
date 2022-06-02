@@ -42,15 +42,18 @@ const ButtonEnter = styled.button`
   padding: 8px 16px;
   cursor: pointer;
 `;
-
 const StyledMessage = styled.p`
+  display: flex;
+  align-self: flex-start;
   color: #03045e;
   list-style: none;
   background-color: white;
   border-radius: 10px;
-  max-width: 70%;
+  max-width: 60%;
+  min-width: 8%;
   margin: 8px;
   padding: 8px;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
   background-color: rgba(142, 227, 239, 0.5);
 `;
 
