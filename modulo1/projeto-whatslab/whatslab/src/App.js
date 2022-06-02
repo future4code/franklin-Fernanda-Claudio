@@ -1,19 +1,60 @@
 import { useState } from 'react';
 import './App.css';
 import styled from 'styled-components';
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 48%;
+  height: 100vh;
+  border: 1px solid black;
+  margin: 0px auto;
+  background-color: #37718e;
+`;
+
+const Card = styled.div`
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 8px 8px;
+`;
+
+const UsuarioStyle = styled.input`
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+`;
+
+const MensagemStyle = styled.input`
+  width: 65%;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+`;
+
+const ButtonEnter = styled.button`
+  background-color: #254e70;
+  border: 1px solid white;
+  color: white;
+  width: 20%;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+`;
+
+const StyledMessage = styled.p`
+  color: #03045e;
+  list-style: none;
+  background-color: white;
+  border-radius: 10px;
+  max-width: 70%;
+  margin: 8px;
+  padding: 8px;
+  background-color: rgba(142, 227, 239, 0.5);
+`;
 
 function App() {
-  const StyledMessage = styled.p`
-    color: #03045e;
-    list-style: none;
-    background-color: white;
-    border-radius: 10px;
-    max-width: 70%;
-    margin: 8px;
-    padding: 8px;
-    background-color: rgba(142, 227, 239, 0.5);
-  `;
-
   const [inputNome, setInputNome] = useState('');
   const [inputMensagem, setInputMensagem] = useState('');
   const [mensagens, setMensagens] = useState([
@@ -40,56 +81,15 @@ function App() {
     const novaListaMensagens = [...mensagens];
     novaListaMensagens.push(novaMensagem);
     setMensagens(novaListaMensagens);
+    setInputMensagem('');
+    setInputNome('');
   };
-
-  const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    width: 48%;
-    height: 100vh;
-    border: 1px solid black;
-    margin: 0px auto;
-    background-color: #37718e;
-  `;
-
-  const Card = styled.div`
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-    padding: 8px 8px;
-  `;
-
-  const UsuarioStyle = styled.input`
-    width: 15%;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 16px;
-  `;
-
-  const MensagemStyle = styled.input`
-    width: 65%;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 16px;
-  `;
-
-  const ButtonEnter = styled.button`
-    background-color: #254e70;
-    border: 1px solid white;
-    color: white;
-    width: 20%;
-    border-radius: 4px;
-    padding: 8px 16px;
-    cursor: pointer;
-  `;
 
   return (
     <Container>
       {ListaDeMensagens}
       <Card>
         <UsuarioStyle
-          autoFocus
           type="text"
           value={inputNome}
           onChange={handleInputNome}
