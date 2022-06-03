@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import styled from 'styled-components';
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,11 +18,13 @@ const Card = styled.div`
   gap: 10px;
   justify-content: space-between;
   padding: 8px 8px;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
 `;
 
 const UsuarioStyle = styled.input`
   font-weight: bold;
   border: none;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   padding: 8px 16px;
 `;
@@ -29,17 +32,18 @@ const UsuarioStyle = styled.input`
 const MensagemStyle = styled.input`
   width: 65%;
   border: none;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   padding: 8px 16px;
 `;
 
 const ButtonEnter = styled.button`
+  border-radius: 50px;
   background-color: #254e70;
-  border: 1px solid white;
+  border: 1px solid #f5f5f5;
   color: white;
   width: 20%;
-  border-radius: 4px;
-  padding: 8px 16px;
+  //padding: 8px 16px;
   cursor: pointer;
 `;
 const BalaoMensagem = styled.div`
@@ -55,7 +59,6 @@ const BalaoMensagem = styled.div`
   word-wrap: break-word;
   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
   background-color: #f5f5f5;
-  //background-color: rgba(142, 227, 239, 0.5);
   padding: 0.9em 0.8em;
   border-radius: 0.5em;
   font-weight: 400;
@@ -174,7 +177,7 @@ function App() {
           placeholder="Mensagem"
         />
         <ButtonEnter onKeyPress={handleKeyPressE} onClick={inserirMensagem}>
-          Enviar
+          &gt;
         </ButtonEnter>
       </Card>
     </Container>
