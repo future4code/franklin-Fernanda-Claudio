@@ -26,6 +26,19 @@ function App() {
   const [inputValue, setInputValue] = useState('');
   const [filtro, setFiltro] = useState('pendentes');
 
+  useEffect(() => {
+    if (tarefas) {
+      const tarefasArmazenadas = localStorage.getItem('tarefas');
+      setTarefa(JSON.parse(tarefasArmazenadas));
+    } else {
+      localStorage.setItem('tarefas', JSON.stringify(tarefas));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+  }, [tarefas]);
+
   const onChangeInput = (event) => {
     setInputValue(event.target.value);
   };
@@ -43,7 +56,7 @@ function App() {
 
   const selectTarefa = (id) => {
     const AtualizarListaTarefas = tarefas.map((tarefa) => {
-      if (id == tarefa.id) {
+      if (id === tarefa.id) {
         const novoEstado = {
           ...tarefa,
           completa: !tarefa.completa,
@@ -59,6 +72,7 @@ function App() {
   const onChangeFilter = (event) => {
     setFiltro(event.target.value);
   };
+
   const listaFiltrada = tarefas.filter((tarefa) => {
     switch (filtro) {
       case 'pendentes':
