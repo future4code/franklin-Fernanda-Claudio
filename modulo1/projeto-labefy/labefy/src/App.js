@@ -1,7 +1,13 @@
 import './App.css';
+import Menu from './components/Menu';
+import styled from 'styled-components';
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div>
+      <Menu />
+    </div>
+  );
 }
 
 export default App;
