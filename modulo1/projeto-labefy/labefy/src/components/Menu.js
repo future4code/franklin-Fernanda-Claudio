@@ -16,35 +16,39 @@ import React, { useState } from 'react';
 //import { IconContext } from 'react-icons';
 
 const Container = styled.div`
+  padding: 2%;
+  gap: 2%;
   display: flex;
-  min-height: 100vh;
+  min-height: 82vh;
 `;
 const MenuLateral = styled.div`
-  background-color: black;
+  color: black;
+  background-color: white;
   width: 200px;
+  border-radius: 20px;
 `;
 const ConteudoPrincipal = styled.div`
-  color: white;
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
+  color: black;
+  padding: 1%;
+  background: white;
+  /* background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 1) 0%,
     rgba(254, 126, 1, 0.9920343137254902) 100%
-  );
-  //background-color: #181818;
+  ); */
   width: 100vw;
+  border-radius: 20px;
 `;
 const Card = styled.div`
   align-items: flex-end;
-
   font-weight: bold;
   display: flex;
   gap: 10px;
   margin: 20px 0px 8px 0px;
-  color: white;
+  color: black;
   text-decoration: none;
   text-align: flex-start;
-  padding-left: 15px;
+  padding: 0px 10px;
 `;
 function Menu() {
   const [section, setSection] = useState('inicio');
@@ -84,9 +88,6 @@ function Menu() {
     <Container>
       <MenuLateral>
         <a onClick={vaiParaInicio}>
-          {/* <IconContext.Provider
-            value={{ size: '1.3em', className: 'global-class-name' }}
-          /> */}
           <Card>
             <BiHomeAlt />
             Inicio
@@ -120,7 +121,6 @@ function Menu() {
           PodCast
         </Card>
       </MenuLateral>
-
       <ConteudoPrincipal>{RenderizaSection()}</ConteudoPrincipal>
     </Container>
   );
