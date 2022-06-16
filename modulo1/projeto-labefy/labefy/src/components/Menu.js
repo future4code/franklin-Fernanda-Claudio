@@ -11,10 +11,8 @@ import styled from 'styled-components';
 import { Inicio } from './Inicio';
 import { Buscar } from './Buscar';
 import { Biblioteca } from './Biblioteca';
-import { NovaPlaylist } from './NovaPlaylist';
+import NovaPlaylist from './NovaPlaylist';
 import React, { useState } from 'react';
-//import { IconContext } from 'react-icons';
-
 const Container = styled.div`
   padding: 2%;
   gap: 2%;
@@ -31,12 +29,7 @@ const ConteudoPrincipal = styled.div`
   color: black;
   padding: 1%;
   background: white;
-  /* background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(254, 126, 1, 0.9920343137254902) 100%
-  ); */
-  width: 100vw;
+  width: 80vw;
   border-radius: 20px;
 `;
 const Card = styled.div`
@@ -51,7 +44,7 @@ const Card = styled.div`
   padding: 0px 10px;
 `;
 function Menu() {
-  const [section, setSection] = useState('inicio');
+  const [section, setSection] = useState('NovaPlaylist');
 
   const vaiParaInicio = () => {
     setSection('inicio');
