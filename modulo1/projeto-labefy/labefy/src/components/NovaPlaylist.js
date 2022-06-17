@@ -51,6 +51,12 @@ const Input = styled.input`
 const NovaPlaylist = () => {
   const [playlists, setPlaylist] = useState([]);
   const [playlistDigitada, setPlaylistDigitada] = useState('');
+  const [adicionaMusica, setAdicionaMusica] = useState(false);
+  const [nomeMusica, setNomeMusica] = useState('');
+  const [artista, setArtista] = useState('');
+  const [url, setUrl] = useState('');
+  const [pegaMusicas, setPegaMusicas] = useState([]);
+  const [playlistSelecionada, setPlaylistSelecionada] = useState('');
 
   const pegaPlaylist = () => {
     axios
@@ -120,6 +126,70 @@ const NovaPlaylist = () => {
     setPlaylistDigitada(event.target.value);
   };
 
+  const pegarMusicasPlaylist = (playlistId) => {
+    const body = {
+      name: nomeMusica,
+      artist: artista,
+      url: url,
+    };
+    axios
+      .get(
+        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}/tracks`,
+        {
+          headers: {
+            Authorization: 'fernanda-claudio-franklin',
+          },
+        },
+      )
+      .then((resposta) => {
+        setPegaMusicas(resposta.data.result.list);
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  };
+
+  const adicionarMusica = (playlistId) => {
+    const body = {
+      name: nomeMusica,
+      artist: artista,
+      url: url,
+    };
+    axios
+      .post(
+        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}/tracks`,
+        body,
+        {
+          headers: {
+            Authorization: 'fernanda-claudio-franklin',
+          },
+        },
+      )
+      .then((resposta) => {
+        alert('Musica Adicionada com Sucesso!');
+        setPegaMusicas(resposta.data.result.list);
+        setNomeMusica('');
+        console.log(playlistId);
+        setArtista('');
+        setUrl('');
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  };
+
+  useEffect(pegaPlaylist, []);
+
+  const onChangeInputNome = (event) => {
+    setNomeMusica(event.target.value);
+  };
+  const onChangeInputArtista = (event) => {
+    setArtista(event.target.value);
+  };
+  const onChangeInputUrl = (event) => {
+    setUrl(event.target.value);
+  };
+
   return (
     <div className="App">
       <div>
@@ -134,11 +204,16 @@ const NovaPlaylist = () => {
         </div>
         <Container>
           {playlists.map((playlist) => {
+            const addMusica = (playlistSelect) => {
+              setPlaylistSelecionada(playlistSelect);
+              setAdicionaMusica(!adicionaMusica);
+            };
             return (
               <Card key={playlist.id}>
                 {playlist.name}
                 <ContainerButton>
-                  <Button onClick={''}>
+                  <Button onClick={() => addMusica(playlist.id)}>
+                    {' '}
                     <IconContext.Provider
                       value={{
                         size: '1.6em',
@@ -161,6 +236,35 @@ const NovaPlaylist = () => {
                     </IconContext.Provider>
                   </Button>
                 </ContainerButton>
+
+                {pegaMusicas.map((musicas) => (
+                  <li key={musicas.id()}>{musicas.name}</li>
+                ))}
+
+                {adicionaMusica === true &&
+                playlistSelecionada === playlist.id ? (
+                  <div>
+                    <h2>Adicione musicas a sua Playlist!</h2>
+                    <input
+                      value={nomeMusica}
+                      placeholder={'Nome'}
+                      onChange={onChangeInputNome}
+                    />{' '}
+                    <input
+                      value={artista}
+                      placeholder={'Artista'}
+                      onChange={onChangeInputArtista}
+                    />
+                    <input
+                      value={url}
+                      placeholder={'Url'}
+                      onChange={onChangeInputUrl}
+                    />
+                    <button onClick={() => adicionarMusica(playlist.id)} />
+                  </div>
+                ) : (
+                  ''
+                )}
               </Card>
             );
           })}
