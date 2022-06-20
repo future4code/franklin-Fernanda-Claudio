@@ -127,11 +127,6 @@ const NovaPlaylist = () => {
   };
 
   const pegarMusicasPlaylist = (playlistId) => {
-    const body = {
-      name: nomeMusica,
-      artist: artista,
-      url: url,
-    };
     axios
       .get(
         `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}/tracks`,
@@ -142,7 +137,8 @@ const NovaPlaylist = () => {
         },
       )
       .then((resposta) => {
-        setPegaMusicas(resposta.data.result.list);
+        setPegaMusicas(resposta.data.result.tracks);
+        console.log(resposta.data.result.tracks);
       })
       .catch((erro) => {
         console.log(erro);
@@ -167,9 +163,7 @@ const NovaPlaylist = () => {
       )
       .then((resposta) => {
         alert('Musica Adicionada com Sucesso!');
-        setPegaMusicas(resposta.data.result.list);
         setNomeMusica('');
-        console.log(playlistId);
         setArtista('');
         setUrl('');
       })
@@ -237,10 +231,6 @@ const NovaPlaylist = () => {
                   </Button>
                 </ContainerButton>
 
-                {pegaMusicas.map((musicas) => (
-                  <li key={musicas.id()}>{musicas.name}</li>
-                ))}
-
                 {adicionaMusica === true &&
                 playlistSelecionada === playlist.id ? (
                   <div>
@@ -260,7 +250,19 @@ const NovaPlaylist = () => {
                       placeholder={'Url'}
                       onChange={onChangeInputUrl}
                     />
-                    <button onClick={() => adicionarMusica(playlist.id)} />
+                    <button onClick={() => adicionarMusica(playlist.id)}>
+                      Adicionar
+                    </button>
+                    <button onClick={() => pegarMusicasPlaylist(playlist.id)}>
+                      Ver musicas
+                    </button>
+                    {pegaMusicas.map((musicas) => {
+                      return (
+                        <div>
+                          <li key={musicas.id}>{musicas.name}</li>
+                        </div>
+                      );
+                    })}
                   </div>
                 ) : (
                   ''
