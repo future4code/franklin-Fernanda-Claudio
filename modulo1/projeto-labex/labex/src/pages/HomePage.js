@@ -8,8 +8,8 @@ const HomePage = () => {
     <div>
       <h1>Bem vindo ao LABEX!</h1>
       <p>Escolha uma das opcoes abaixo</p>
+      <button onClick={() => goToList(navigate)}>Lista de Viagens</button>
       <button onClick={() => goToLogin(navigate)}>Área Administrativa</button>
-      <button onClick={() => goToList(navigate)}>Lista de Viagens</button>{' '}
     </div>
   );
 };

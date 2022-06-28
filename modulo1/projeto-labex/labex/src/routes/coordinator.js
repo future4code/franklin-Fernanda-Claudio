@@ -23,3 +23,6 @@ export const goToHomeAdmin = (navigate) => {
 export const goToCreateTrip = (navigate) => {
   navigate('/admin/trips/create');
 };
+export const goToDetailsTrip = (navigate) => {
+  navigate('/admin/trips/:id');
+};
