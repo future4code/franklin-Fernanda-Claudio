@@ -16,6 +16,8 @@ const LoginPage = () => {
     setPassword(event.target.value);
   };
   const onSubmitLogin = () => {
+    // eslint-disable-next-line no-restricted-globals
+    event.preventDefault();
     console.log(email, password);
     const body = {
       email: email,
@@ -40,19 +42,23 @@ const LoginPage = () => {
 
   return (
     <div>
-      <input
-        placeholder="email"
-        type="email"
-        value={email}
-        onChange={onChangeEmail}
-      />
-      <input
-        placeholder="password"
-        type="password"
-        value={password}
-        onChange={onChangePassword}
-      />
-      <button onClick={onSubmitLogin}>Enviar</button>
+      <form onSubmit={onSubmitLogin}>
+        <input
+          required
+          placeholder="email"
+          type="email"
+          value={email}
+          onChange={onChangeEmail}
+        />
+        <input
+          required
+          placeholder="password"
+          type="password"
+          value={password}
+          onChange={onChangePassword}
+        />
+        <button>Entrar</button>
+      </form>
     </div>
   );
 };

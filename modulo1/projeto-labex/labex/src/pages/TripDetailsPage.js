@@ -16,7 +16,7 @@ const useProtectedPage = () => {
   }, []);
 };
 
-export const TripDetailsPage = () => {
+export const TripDetailsPage = (props) => {
   const [state, setState] = useState([]);
   const navigate = useNavigate();
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { useRequestData } from '../hooks/useRequestData';
 import { BASE_URL } from '../constants/urls';
 import styled from 'styled-components';
-
 export const Viagens = () => {
   const CardViagem = styled.div`
     border: 1px solid black;

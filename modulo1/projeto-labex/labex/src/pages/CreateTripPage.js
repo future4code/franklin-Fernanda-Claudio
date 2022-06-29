@@ -1,13 +1,24 @@
 import React from 'react';
+import { goToLastPage } from '../routes/coordinator';
+import { useNavigate } from 'react-router-dom';
 
 const CreateTripPage = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="page">
+    <div>
+      <button onClick={() => goToLastPage(navigate)}>Voltar</button>
       <h2>Criar Viagem</h2>
-      <form action="">
-        <input type="text" placeholder="Nome" required />
-        <br />
-        <select placeholder="Planeta" required>
+      <form onSubmit={''}>
+        <p>Nome: </p>
+        <input
+          type="text"
+          pattern={'^.{5,}'}
+          title="No minimo 5 letras"
+          required
+        />
+        <p>Planeta</p>
+        <select required>
           <option value disabled selected>
             Escolha um Planeta
           </option>
@@ -21,16 +32,24 @@ const CreateTripPage = () => {
           <option value="Netuno">Netuno</option>
           <option value="Plutão">Plutão</option>
         </select>
+        <p>Data: </p>
+        <input
+          type="date"
+          pattern={''}
+          title="Deve conter uma data no futuro"
+          required
+        />
+        <p>Descrição: </p>
+        <input
+          type="text"
+          pattern={'^.{30,}'}
+          title="No minimo 30 letras"
+          required
+        />
+        <p>Duração em dias</p>
+        <input type={'number'} min={50} required />
         <br />
-        <input type="date" required />
-        <br />
-        <input type="text" placeholder="Descrição" required />
-        <br />
-        <input type="text" placeholder="Duração em dias" required />
-        <br />
-        <div>
-          <button onClick={'POST'}>Criar</button>
-        </div>
+        <button>Criar</button>
       </form>
     </div>
   );
