@@ -12,7 +12,7 @@ function checaTriangulo(a: number, b: number, c: number): string {
 console.log(checaTriangulo(10,10,10))
 
 // Exercicio 2 
-function imprimeTresCoresFavoritas(cor1: string, cor2: string, cor3: string): Array<any>{
+function imprimeTresCoresFavoritas(cor1: string, cor2: string, cor3: string): Array<String>{
   return [cor1, cor2, cor3]
 }
 console.log(imprimeTresCoresFavoritas('azul', 'vermelho', 'amarelo'))
@@ -46,18 +46,15 @@ console.log(comparaDoisNumeros(10,20))
 
 //exercicio 5 
 
-function checaRenovacaoRG(): boolean {
-  const anoAtual = Number(prompt("Digite o ano atual"))
-  const anoNascimento = Number(prompt("Digite o ano de nascimento"))
-  const anoEmissao = Number(prompt("Digite o ano de emissão do documento"))
+function checaRenovacaoRG(anoAtual: number, anoNascimento: number, anoEmissao: number): boolean {
 
-  const idade = anoAtual - anoNascimento
-  const tempoCarteira = anoAtual - anoEmissao
+  const idade: number = anoAtual - anoNascimento
+  const tempoCarteira: number = anoAtual - anoEmissao
 
-  const cond1 = idade <= 20 && tempoCarteira >= 5
-  const cond2 = idade > 20 && idade <= 50 && tempoCarteira >= 10
-  const cond3 = idade > 50 && tempoCarteira >= 15
+  const cond1:boolean = idade <= 20 && tempoCarteira >= 5
+  const cond2:boolean = idade > 20 && idade <= 50 && tempoCarteira >= 10
+  const cond3 :boolean = idade > 50 && tempoCarteira >= 15
 
   return (cond1 || cond2 || cond3)
 }
-console.log(checaRenovacaoRG())
+console.log("oi", checaRenovacaoRG(2022, 2000, 2018))
