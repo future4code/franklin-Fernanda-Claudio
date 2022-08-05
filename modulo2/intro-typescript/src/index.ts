@@ -8,7 +8,6 @@ function checaTriangulo(a: number, b: number, c: number): string {
     return "Isósceles";
   }
 }
-
 console.log(checaTriangulo(10,10,10))
 
 // Exercicio 2 
@@ -45,7 +44,6 @@ function comparaDoisNumeros(num1: number, num2: number): number{
 console.log(comparaDoisNumeros(10,20))
 
 //exercicio 5 
-
 function checaRenovacaoRG(anoAtual: number, anoNascimento: number, anoEmissao: number): boolean {
 
   const idade: number = anoAtual - anoNascimento
@@ -58,3 +56,34 @@ function checaRenovacaoRG(anoAtual: number, anoNascimento: number, anoEmissao: n
   return (cond1 || cond2 || cond3)
 }
 console.log("oi", checaRenovacaoRG(2022, 2000, 2018))
+
+//exercicio 6 - desafio 1 
+function doisNumeros(num1: number, num2: number): Array<Number>{
+  let maiorNumero;
+  let menorNumero;
+
+  if (num1 > num2) {
+    maiorNumero = num1;
+    menorNumero = num2;
+  } else {
+    maiorNumero = num2;
+    menorNumero = num1;
+  }
+
+  let soma = num1 + num2;
+  let subtração = num1 - num2;
+  let multiplicacao = num1 * num2;
+
+  let arry: Array<Number> = [soma,subtração,multiplicacao, maiorNumero, menorNumero]
+  return arry
+}
+console.log(doisNumeros(50,10))
+
+//exercicio 7 - desafio 3
+function reverterString(palavra:string): any {
+  return palavra.split("").reverse().join("");
+
+}
+let palavraConvertida = reverterString("adam")
+
+console.log(palavraConvertida)
