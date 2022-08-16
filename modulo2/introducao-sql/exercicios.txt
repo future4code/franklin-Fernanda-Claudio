@@ -88,5 +88,7 @@ resultado retorna os campos NULL
 
 d)Escreva uma query que retorne o id, nome e salário de todos que tenham o salário com o valor máximo de R$500.000
 
+SELECT id, name, salary from Actor WHERE salary < 500000;
+
 
 e)Tente usar a query abaixo. Você vai reparar que ela vai gerar um erro. Anote a mensagem de erro, traduza (pode usar o Google Tradutor diretamente) e explique porque esse erro aconteceu. Por fim, corrija individualmente a query para que funcione, teste o comando e anote-o também como resposta
