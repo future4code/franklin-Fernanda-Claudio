@@ -1,0 +1,53 @@
+Exercicio 1 
+
+a - deleta coluna salary
+
+b - altera de gender para sex.
+
+c - dá erro, pois nao existe mais a coluna gender.
+
+d - ALTER TABLE Actor CHANGE gender gender VARCHAR(100);
+
+Exercicio 2
+
+a - 
+UPDATE Actor
+SET name = "Fernanda silva"
+WHERE id = "003";
+
+UPDATE Actor
+SET birth_date = '2000-12-16'
+WHERE id = "003";
+
+b - 
+UPDATE Actor
+SET name = upper(name)
+WHERE name = "Juliana Paes";
+
+SELECT name from Actor WHERE name = "Juliana Paes";
+
+UPDATE Actor
+SET name = lower(name)
+WHERE name = "Juliana Paes";
+
+SELECT name from Actor WHERE name = "Juliana Paes";
+
+c - 
+UPDATE Actor
+SET name = "Juliana Pires", birth_date = "2000-04-02", gender = "nao-binario", favorite_ice_cream_flavor = "chocolate", type = "director"
+WHERE id = "005";
+
+d - ele nao consegue encontrar.
+
+Exercicio 3
+
+a - DELETE FROM Actor WHERE name = "Fernanda Montenegro";
+
+
+b - 
+DELETE FROM Actor
+WHERE
+gender = "male" AND
+salary > 1000000
+
+
