@@ -1,0 +1,94 @@
+EXERCICIO 1 -----
+a) Nesta tabela, utilizamos o FLOAT para declarar o salário, porque esta é uma forma de representar um número não inteiro em uma tabela. Explique os demais comandos que estão nessa query.
+
+VARCHAR(255) = só aceita string de até 255 caracteres.
+NOT NULL = obrigatorio o preenchimento.
+DATE = metodo de data. 
+
+b) O comando SHOW é bem útil para nos prover informações sobre bancos, tabelas, e mais. Utilize os comandos: SHOW DATABASES e SHOW TABLES. Explique os resultados.
+
+SHOW DATABASES = mostra o resultado do banco de dados
+SHOW TABLES = mostra todas tabelas que tem dentro do banco de dados. 
+
+c) O comando DESCRIBE pode ser usado para ver estrutura de uma tabela. Utilize o comando  DESCRIBE Actor e explique os resultados.
+
+com esse comando mostra todas as propriedades que tem na tabela de actor. 
+----------
+EXERCICIO 2 
+
+a) Escreva uma query que crie a atriz Glória Pires, com o id 002, salário R$1.200.000 e data de nascimento 23 de Agosto de 1963
+
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "002", 
+  "Glória Pires",
+  1200000,
+  "1963-08-23", 
+  "female"
+);
+
+b) Escreva uma query que tente adicionar um outro elemento a tabela com o mesmo id do item anterior 002. Isso gerará um erro. Anote a mensagem de erro, traduza (pode usar o Google Tradutor diretamente) e explique porque esse erro aconteceu.
+
+* Entrada duplicada '002' para chave 'PRIMARY' *
+
+nao pode ter duas chaves primarias com o mesmo valor, pois isso representa algo unico de cada ator.
+
+c) 
+INSERT INTO Actor (id, name, salary,birth_date, gender)
+VALUES(
+  "003", 
+  "Fernanda Montenegro",
+  300000,
+  "1929-10-19", 
+  "female"
+);
+
+r: estava faltando birth_date, gender. 
+
+d)
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "004",
+  "Fernanda da Silva",
+  400000,
+  "1949-04-18", 
+  "male"
+);
+
+r: estava faltando nome, que é obrigatorio. 
+
+e) 
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "005", 
+  "Juliana Paes",
+  719333.33,
+  "1979-03-26", 
+  "female"
+);
+r: estava faltando as aspas no campo de data de nascimento. 
+
+EXERCICIO 3 ----
+
+a)Escreva uma query que retorne todas as informações das atrizes
+r: 
+SELECT * from Actor WHERE gender = "female"
+
+b)Escreva uma query que retorne o salário do ator com o nome `Tony Ramos`
+r: 
+SELECT salary from Actor WHERE name = "Tony Ramos"
+
+
+c)Escreva uma query que retorne todas as informações que tenham o `gender` com o valor `"invalid"`. Explique o resultado.
+r: 
+SELECT * from Actor WHERE gender = "invalid"
+
+resultado retorna os campos NULL
+
+
+d)Escreva uma query que retorne o id, nome e salário de todos que tenham o salário com o valor máximo de R$500.000
+
+SELECT id, name, salary from Actor WHERE salary < 500000;
+
+
+e)Tente usar a query abaixo. Você vai reparar que ela vai gerar um erro. Anote a mensagem de erro, traduza (pode usar o Google Tradutor diretamente) e explique porque esse erro aconteceu. Por fim, corrija individualmente a query para que funcione, teste o comando e anote-o também como resposta
