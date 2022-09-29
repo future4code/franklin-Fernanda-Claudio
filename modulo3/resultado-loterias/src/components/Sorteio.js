@@ -1,9 +1,14 @@
-import { ContainerSorteio } from './style';
+import { Balaozin, ContainerSorteio } from './style';
 export function Sorteio(props) {
   return (
     <>
       <ContainerSorteio>
-        <p> {props.numbers} </p>
+        {props.numbers &&
+          props.numbers.map((number) => (
+            <>
+              <p>{number}</p>
+            </>
+          ))}
       </ContainerSorteio>
     </>
   );
