@@ -1,14 +1,17 @@
 import { Product } from '../model/product'
 import connection from '../database/connection'
 
- export const criarProduto = async (id: number, name: string, tag: string ) => {
+ export const createProduct = async (id: number, name: string, tag: string, url: string ) => {
 
-    const product = new Product(id, name, tag )
+    const product = new Product(name, tag, url)
 
     return await connection('Products').insert(
-        {   id: product.id,
+        { 
            name: product.name,
             tag: product.tag,
+            url: product.url,
         }
     )
 }
+
+

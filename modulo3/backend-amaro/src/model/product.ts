@@ -1,21 +1,19 @@
 
 export  class Product {
-    public id: any;
+
     public name: string;
     public tag: string;
+    public url: string;
 
     constructor(
-        id: number,
+
         name: string,
         tag: string,
+        url: string,
     ){    
-        this.id = id
         this.tag = tag
         this.name = name;
-    }
-
-    public getId = () => {
-        return this.id
+        this.url = url;
     }
 
     public getName = () => {
@@ -25,8 +23,8 @@ export  class Product {
     public getTag = () => {
         return this.tag
     }
-    public setId = (newId: string) => {
-        this.id = newId
+    public getUrl = () => {
+        return this.url
     }
 
     public setName = (newName: string) => {
