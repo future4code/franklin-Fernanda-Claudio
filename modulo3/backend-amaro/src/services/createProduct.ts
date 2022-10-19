@@ -1,7 +1,7 @@
 import { Product } from '../model/product'
 import connection from '../database/connection'
 
- export const createProduct = async (id: number, name: string, tag: string, url: string ) => {
+ export const createProduct = async (name: string, tag: string, url: string ) => {
 
     const product = new Product(name, tag, url)
 
