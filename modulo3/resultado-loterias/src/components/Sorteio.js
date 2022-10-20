@@ -1,4 +1,4 @@
-import { Balaozin, ContainerSorteio } from './style';
+import { ContainerSorteio } from './style';
 export function Sorteio(props) {
   return (
     <>

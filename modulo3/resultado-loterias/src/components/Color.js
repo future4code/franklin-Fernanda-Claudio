@@ -19,22 +19,25 @@ import { SideBarDesk } from './SideBarDesk';
 
 const Color = () => {
   const [temaSorteio, setTemaSorteio] = useState([]);
-  const [input, setInput] = useState(['MEGA-SENA']);
-  const [numeroSorteio, setNumeroSorteio] = useState({ concursoId: 0 });
+  const [input, setInput] = useState('MEGA-SENA');
+  const [numeroSorteio, setNumeroSorteio] = useState(0);
   const [numeros, setNumeros] = useState(0);
   const [data, setData] = useState('10');
 
   const colors = {
     'MEGA-SENA': { cor: '#6BEFA3', index: 0 },
     QUINA: { cor: '#8666EF', index: 1 },
-    LOTOFÁCIL: { cor: '#DD7AC6', index: 2 },
+    LOTOFACIL: { cor: '#DD7AC6', index: 2 },
     LOTOMANIA: { cor: '#FFAB64', index: 3 },
     TIMEMANIA: { cor: '#5AAD7D', index: 4 },
-    'DIA DE SORTE': { cor: '#BFAF83', index: 5 },
+    'DIA-DE-SORTE': { cor: '#BFAF83', index: 5 },
+    'LOTERIA-FEDERAL': { cor: '#6BEFA3', index: 6 },
+    'SUPER-SETE': { cor: '#6BEFA3', index: 7 },
+    'DUPLA-SENA': { cor: '#6BEFA3', index: 8 },
   };
   const getTemaSorteio = () => {
     axios
-      .get('https://brainn-api-loterias.herokuapp.com/api/v1/loterias')
+      .get('https://loteriascaixa-api.herokuapp.com/api')
       .then((resposta) => {
         setTemaSorteio(resposta.data);
       })
@@ -45,46 +48,21 @@ const Color = () => {
 
   useEffect(getTemaSorteio, []);
 
-  const getLoteriasConcurso = () => {
-    axios
-      .get(
-        'https://brainn-api-loterias.herokuapp.com/api/v1/loterias-concursos',
-      )
-      .then((resposta) => {
-        setNumeroSorteio(resposta.data[colors[input].index]);
-      })
-      .catch((erro) => {
-        console.log(erro);
-      });
-  };
-
-  useEffect(getLoteriasConcurso, [input]);
-
   const getNumerosSorteados = () => {
     axios
       .get(
-        `https://brainn-api-loterias.herokuapp.com/api/v1/concursos/${numeroSorteio.concursoId}`,
+        `https://loteriascaixa-api.herokuapp.com/api/${input.toLowerCase()}/latest`,
       )
       .then((resposta) => {
-        setNumeros(resposta.data.numeros);
-        console.log('sem modificar', resposta.data.data);
-        console.log('modificando', modificarArray(resposta.data.data));
-        setData(modificarArray(resposta.data.data));
+        setNumeros(resposta.data.dezenas);
+        setData(resposta.data.data);
+        setNumeroSorteio(resposta.data.concurso);
       })
       .catch((erro) => {
         console.log(erro);
       });
   };
   useEffect(getNumerosSorteados, [input, numeroSorteio]);
-
-  const modificarArray = (data) => {
-    const resultado = data.split('-');
-    const mes = resultado[1];
-    const ano = resultado[0];
-    const day = resultado[2].toString().substring(0, 2);
-    const date = `${day}/${mes}/${ano}`;
-    return date;
-  };
 
   return (
     <ContainerCentral>
@@ -95,8 +73,8 @@ const Color = () => {
           {temaSorteio &&
             temaSorteio.map((sorteio) => (
               <>
-                <option value={sorteio.nome.toUpperCase()} key={sorteio.id}>
-                  {sorteio.nome.toUpperCase()}
+                <option value={sorteio.toUpperCase()} key={sorteio}>
+                  {sorteio.toUpperCase()}
                 </option>
               </>
             ))}
@@ -105,11 +83,11 @@ const Color = () => {
           <img src={Logo} alt="" />
           <Nome>{input}</Nome>
         </TextAndLogoDiv>
-        <Concurso>{`CONCURSO ${numeroSorteio.concursoId}`}</Concurso>
+        <Concurso>{`CONCURSO ${numeroSorteio}`}</Concurso>
         <ConcursoDesk>
           <NomeConcurso>CONCURSO</NomeConcurso>
           <IdConcurso>
-            {numeroSorteio.concursoId} - {data}
+            {numeroSorteio} - {data}
           </IdConcurso>
         </ConcursoDesk>
       </ContainerMain>
